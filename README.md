@@ -3,10 +3,8 @@
 Flutter App and Web App using FLASK & Python
 
 
-#Contributor
+# Contributor
 
 Mufassal Hussain
-
 &
-
 Muhammad Bilal
