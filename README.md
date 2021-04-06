@@ -1,3 +1,12 @@
-This app is use for COVID Detection Using Chest Xray with using TFlite model.
+# FINAL YEAR PROJECT 
 
-This app was created by [Mufassal Hussain & Muhammad Bilal]
+Flutter App and Web App using FLASK & Python
+
+
+#Contributor
+
+Mufassal Hussain
+
+&
+
+Muhammad Bilal
