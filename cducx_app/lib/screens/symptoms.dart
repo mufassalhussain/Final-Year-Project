@@ -11,6 +11,16 @@ class SymptomsPage extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.black, size: 30.0),
           shadowColor: Colors.black54,
           title: Text('Symptoms', style: kAppBarStyle),
+            flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [Colors.purple, Colors.blue],
+            ),
+          ),
+        ),
+      
         ),
         body: Column(
           children: <Widget>[

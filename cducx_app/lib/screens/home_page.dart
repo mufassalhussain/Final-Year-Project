@@ -1,4 +1,5 @@
 import 'package:covid/constants.dart';
+import 'package:covid/screens/about_us.dart';
 import 'package:covid/screens/symptoms.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -285,7 +286,10 @@ class NavDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(FontAwesomeIcons.infoCircle),
             title: Text('About Us'),
-            onTap: () => {null},
+            onTap: () => {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => aboutus())),
+            },
           ),
         ],
       ),

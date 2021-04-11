@@ -11,6 +11,15 @@ class DosAndDontsPage extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.black, size: 30.0),
           shadowColor: Colors.black54,
           title: Text('Do\'s and Don\'t', style: kAppBarStyle),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Colors.purple, Colors.blue],
+              ),
+            ),
+          ),
         ),
         body: Column(
           // padding: EdgeInsets.all(5),
