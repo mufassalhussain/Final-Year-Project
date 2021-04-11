@@ -4,6 +4,8 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:tflite/tflite.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:covid/screens/home_page.dart';
 
 class Predictor extends StatelessWidget {
   @override
@@ -14,7 +16,161 @@ class Predictor extends StatelessWidget {
   }
 }
 
+class HomePage2 extends StatefulWidget {
+  @override
+  _HomePage2State createState() => _HomePage2State();
+}
+
+class _HomePage2State extends State<HomePage2> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: NavDrawer(),
+      appBar: AppBar(
+        toolbarHeight: 90.0,
+        centerTitle: true,
+        title: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/dosanddonts/covid19.png',
+              fit: BoxFit.contain,
+              height: 50.0,
+              width: 50.0,
+            ),
+            Text(
+              'CDUCX',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
+            ),
+            Container(
+              padding: const EdgeInsets.all(8.0),
+            ),
+          ],
+        ),
+        // leading: IconButton(
+        //  icon: Icon(Icons.menu),
+        //onPressed: () {
+        // NavDrawer();
+        //},
+        // ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.notifications),
+            onPressed: () {},
+          ),
+        ],
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [Colors.purple, Colors.blue],
+            ),
+          ),
+        ),
+      ),
+      /*
+        BottomNavigationBar(
+          onTap: onTapped,
+          backgroundColor: Colors.purple,
+          currentIndex: _currentIndex,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(
+                FontAwesomeIcons.home,
+                color: Colors.black,
+              ),
+              title: Text(
+                'Home',
+                style: kBottomBarTextStyle,
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                FontAwesomeIcons.superpowers,
+                color: Colors.black,
+              ),
+              title: Text(
+                'Predict',
+                style: kBottomBarTextStyle,
+              ),
+            ),
+          ],
+        ),
+        
+        */
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.purple,
+        child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Expanded(
+                child: SizedBox(
+                  height: 70,
+                  child: Material(
+                    type: MaterialType.transparency,
+                    child: InkWell(
+                      onTap: () => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage())),
+                      },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            FontAwesomeIcons.home,
+                            color: Colors.black,
+                          ),
+                          Text(
+                            'Home',
+                            style: kBottomBarTextStyle,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: SizedBox(
+                  height: 70,
+                  child: Material(
+                    type: MaterialType.transparency,
+                    child: InkWell(
+                      onTap: () => {
+                        HomePage2(),
+                      },
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(
+                            FontAwesomeIcons.superpowers,
+                            color: Colors.black,
+                          ),
+                          Text(
+                            'Predict',
+                            style: kBottomBarTextStyle,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ]),
+      ),
+      body: Predictor(),
+    );
+  }
+}
+
 //List myout = null;
+String mytext;
 
 class MyImagePicker extends StatefulWidget {
   @override
@@ -25,6 +181,8 @@ class _MyImagePickerState extends State<MyImagePicker> {
   File imageURI;
   List result;
   bool _loading = false;
+  bool flag = false;
+
   //String result1;
   //String path;
 
@@ -66,7 +224,9 @@ class _MyImagePickerState extends State<MyImagePicker> {
   void initState() {
     super.initState();
     _loading = true;
-
+    if (imageURI == null) {
+      flag = true;
+    }
     loadModel().then((value) {
       setState(() {
         _loading = false;
@@ -85,11 +245,9 @@ class _MyImagePickerState extends State<MyImagePicker> {
           children: <Widget>[
             imageURI == null
                 ? Expanded(
-                    flex: 1,
-                    child: Center(
-                      child: Text('No image selected.'),
-                    ),
-                  )
+                    flex: 5,
+                    child: Image.asset('assets/images/dosanddonts/select.png',
+                        width: 300, height: 200, fit: BoxFit.cover))
                 : Expanded(
                     flex: 5,
                     child: Image.file(imageURI,
@@ -179,9 +337,35 @@ class _MyImagePickerState extends State<MyImagePicker> {
             ),
          */
             Expanded(
-              // padding: EdgeInsets.all(8),
-              //  decoration: BoxDecoration(),
-              // margin: const EdgeInsets.only(left: 26.0),
+              flex: 3,
+              child: Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: Color(0xFFDFE2E2),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: RaisedButton(
+                  onPressed: () => showAlertDialog5(context, result),
+                  child: Column(
+                    children: <Widget>[
+                      Icon(
+                        FontAwesomeIcons.superpowers,
+                        size: 50.0,
+                      ),
+                      Text(
+                        'Predict',
+                        style: kPredictButtonsStyle,
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                  textColor: Colors.black,
+                  color: Colors.blueAccent,
+                  padding: EdgeInsets.fromLTRB(12, 12, 12, 12),
+                ),
+              ),
+
+              /*
               child: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
@@ -204,6 +388,7 @@ class _MyImagePickerState extends State<MyImagePicker> {
                   ],
                 ),
               ),
+            */
             ),
             SizedBox(
               height: 5.0,
@@ -266,51 +451,105 @@ class _MyImagePickerState extends State<MyImagePicker> {
     super.dispose();
   }
 }
-/*
-showAlertDialog5(BuildContext context) {
-  // Create button
+
+showAlertDialog5(BuildContext context, List myout) {
+  var alertStyle = AlertStyle(
+    animationType: AnimationType.fromTop,
+    isOverlayTapDismiss: false,
+    descStyle: TextStyle(fontWeight: FontWeight.bold),
+    animationDuration: Duration(milliseconds: 350),
+    titleStyle: TextStyle(
+      color: Colors.red,
+      fontWeight: FontWeight.bold,
+    ),
+  );
+  var alertStyle2 = AlertStyle(
+    animationType: AnimationType.fromTop,
+    isOverlayTapDismiss: false,
+    descStyle: TextStyle(fontWeight: FontWeight.bold),
+    animationDuration: Duration(milliseconds: 350),
+    titleStyle: TextStyle(
+      color: Colors.green,
+      fontWeight: FontWeight.bold,
+    ),
+  );
+  /* //Create button
   Widget okButton = FlatButton(
     child: Text("OK"),
     onPressed: () {
       Navigator.of(context).pop();
     },
+
   );
+ */
+  if (myout[0]["label"] == 'Positive') {
+    Alert(
+      style: alertStyle,
+      context: context,
+      type: AlertType.error,
+      title: "COVID19 Positive",
+      desc: "You may require emergency care.Call an Ambulance right now",
+      buttons: [
+        DialogButton(
+          child: Text(
+            "Ok",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          gradient: LinearGradient(colors: [
+            Color.fromRGBO(116, 116, 191, 1.0),
+            Color.fromRGBO(52, 138, 199, 1.0)
+          ]),
+          onPressed: () => Navigator.pop(context),
+          width: 120,
+        )
+      ],
+    ).show();
+  } else if (myout[0]["label"] == 'Normal') {
+    //mytext = 'COVID19 status is '+myout[0]["label"].toString()+' Congratulation you are safe';
+    Alert(
+      context: context,
+      style: alertStyle2,
+      type: AlertType.success,
+      title: "COVID19 Normal",
+      desc: "Congratulation you are safe",
+      buttons: [
+        DialogButton(
+          child: Text(
+            "Ok",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          gradient: LinearGradient(colors: [
+            Color.fromRGBO(116, 116, 191, 1.0),
+            Color.fromRGBO(52, 138, 199, 1.0)
+          ]),
+          onPressed: () => Navigator.pop(context),
+          width: 120,
+        )
+      ],
+    ).show();
+  } else {}
+
+/*
   // Create AlertDialog
   AlertDialog alert = AlertDialog(
     title: Text("Result"),
-    content: RichText(
-      textAlign: TextAlign.center,
-      text: TextSpan(
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 25.0,
-        ),
-        // /
-        children: <TextSpan>[
-          TextSpan(text: 'Result : '),
-          myout == null
-              ? TextSpan(text: 'None')
-              : TextSpan(
-                  text: '${myout[0]["label"]} Case',
-                  style: TextStyle(
-                      color: myout[0]["label"] == 'Covid'
-                          ? Colors.red
-                          : Colors.green),
-                )
-        ],
-      ),
+    content: Text(
+      '$mytext',
+      style: TextStyle(
+          color: myout[0]["label"] == 'Positive' ? Colors.red : Colors.green),
     ),
     actions: [
       okButton,
     ],
   );
 
-  // show the dialog
+ // show the dialog
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return alert;
     },
   );
-}
+
 */
+}
