@@ -7,4 +7,8 @@ Flutter App and Web App using FLASK & Python
 
 Mufassal Hussain
 &
+<<<<<<< HEAD
 Muhammad Bilal
+=======
+Muhammad Bilal
+>>>>>>> 11343e6bb3e766bfc92d982cdf37dc4704c4d504
