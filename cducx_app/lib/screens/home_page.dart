@@ -6,14 +6,64 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:covid/components/reusable_card.dart';
 import 'package:covid/screens/dos_and_donts.dart';
 import 'package:covid/screens/predict.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+
 //import 'package:covid/screens/stats_screen.dart';
+String _message = '';
+String nmesg = '-1';
 
 class HomePage extends StatefulWidget {
+  HomePage({Key key}) : super(key: key);
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+
+  _registerOnFirebase() {
+    _firebaseMessaging.subscribeToTopic('all');
+    _firebaseMessaging.getToken().then((token) => print(token));
+  }
+
+  @override
+  void initState() {
+    _registerOnFirebase();
+    getMessage();
+    if (nmesg != _message) {
+      if (_message != '') {
+        final snackBar = SnackBar(
+          content: Text('Notification: $_message'),
+          action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              // Some code to undo the change.
+            },
+          ),
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+        nmesg = _message;
+      }
+    } else {}
+
+    super.initState();
+  }
+
+  void getMessage() {
+    _firebaseMessaging.configure(
+        onMessage: (Map<String, dynamic> message) async {
+      print('received message');
+      setState(() => _message = message["notification"]["body"]);
+    }, onResume: (Map<String, dynamic> message) async {
+      print('on resume $message');
+      setState(() => _message = message["notification"]["body"]);
+    }, onLaunch: (Map<String, dynamic> message) async {
+      print('on launch $message');
+      setState(() => _message = message["notification"]["body"]);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,9 +84,6 @@ class _HomePageState extends State<HomePage> {
               'CDUCX',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
             ),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-            ),
           ],
         ),
         // leading: IconButton(
@@ -45,12 +92,6 @@ class _HomePageState extends State<HomePage> {
         // NavDrawer();
         //},
         // ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {},
-          ),
-        ],
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -234,18 +275,13 @@ class NavDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             child: Text(
-              'CDUCX APP',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 25.0,
-                  fontWeight: FontWeight.bold),
+              '',
             ),
             decoration: BoxDecoration(
                 color: Colors.green,
                 image: DecorationImage(
                     fit: BoxFit.fill,
-                    image:
-                        AssetImage('assets/images/dosanddonts/covid19.png'))),
+                    image: AssetImage('assets/images/dosanddonts/works.png'))),
           ),
           ListTile(
             leading: Icon(FontAwesomeIcons.home),

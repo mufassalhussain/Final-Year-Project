@@ -22,10 +22,7 @@ final kSymptomCardInfoStyle =
     TextStyle(fontFamily: 'Baloo', fontSize: 17, height: 1.2);
 
 final kAppBarStyle = TextStyle(
-    color: Colors.black,
-    fontFamily: 'Poppins',
-    fontSize: 25.0,
-    fontWeight: FontWeight.bold);
+    fontFamily: 'Poppins', fontSize: 25.0, fontWeight: FontWeight.bold);
 
 final kactionNameGreenStyle = TextStyle(
   color: Color(0xFF3B978E),

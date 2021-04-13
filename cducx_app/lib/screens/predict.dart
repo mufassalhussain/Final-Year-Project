@@ -27,38 +27,22 @@ class _HomePage2State extends State<HomePage2> {
     return Scaffold(
       drawer: NavDrawer(),
       appBar: AppBar(
-        toolbarHeight: 90.0,
         centerTitle: true,
-        title: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/dosanddonts/covid19.png',
-              fit: BoxFit.contain,
-              height: 50.0,
-              width: 50.0,
-            ),
-            Text(
-              'CDUCX',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
-            ),
-            Container(
-              padding: const EdgeInsets.all(8.0),
-            ),
-          ],
+        title: Text(
+          'Predict',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 25.0,
+            fontFamily: 'Poppins',
+          ),
         ),
+
         // leading: IconButton(
         //  icon: Icon(Icons.menu),
         //onPressed: () {
         // NavDrawer();
         //},
         // ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {},
-          ),
-        ],
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(

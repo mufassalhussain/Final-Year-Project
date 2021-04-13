@@ -24,6 +24,7 @@ dependencies:
   flutter_spinkit: ^4.1.2
   alpha2_countries: ^1.0.5
   rflutter_alert: ^2.0.2
+  firebase_messaging: ^7.0.3
 
 dev_dependencies:
   flutter_test:
