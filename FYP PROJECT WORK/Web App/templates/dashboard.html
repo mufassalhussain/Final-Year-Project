@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Livetrack - CDUCX</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static',filename='images/log.ico')}}" />
+    <!-- amCharts includes -->
+    
+<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}" />
+<link rel="stylesheet" href="{{url_for('static',filename='vendors/fontawesome/css/all.css')}}" />
+<link rel="stylesheet" href="{{url_for('static',filename='vendors/linearicons/css/linearicons.css')}}" />
+<link rel="stylesheet" href="{{url_for('static',filename='vendors/slick/slick.css')}}" />
+<link rel="stylesheet" href="{{url_for('static',filename='vendors/slick/slick-theme.css')}}"  />
+<link rel="stylesheet" href="{{url_for('static',filename='vendors/mCustomScrollbar/jquery.mCustomScrollbar.min.css')}}" />
+<link rel="stylesheet" href="{{url_for('static',filename='vendors/animate-css/animate.css')}}"  />
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}"  />
+<link rel="stylesheet" href="{{url_for('static',filename='css/responsive.css')}}" />
+    <script src="{{url_for('static',filename='/deps/amcharts4/core.js')}}"></script>
+    <script src="{{url_for('static',filename='/deps/amcharts4/charts.js')}}"></script>
+    <script src="{{url_for('static',filename='/deps/amcharts4/maps.js')}}"></script>
+    
+    <script src="{{url_for('static',filename='/deps/amcharts4/themes/dark.js')}}"></script>
+    <script src="{{url_for('static',filename='/deps/amcharts4/themes/animated.js')}}"></script>
+
+    <script src="{{url_for('static',filename='/deps/amcharts4-geodata/worldLow.js')}}"></script>
+    <script src="{{url_for('static',filename='/deps/amcharts4-geodata/data/countries2.js')}}"></script>
+
+    <!-- DataTables includes -->
+    <script src="{{url_for('static',filename='/deps/jquery/jquery-3.3.1.min.js')}}"></script>
+    <link rel="stylesheet" media="all" href="{{url_for('static',filename='/deps/datatables/css/jquery.dataTables.min.css')}}"/>
+    <link rel="stylesheet" media="all" href="{{url_for('static',filename='/deps/datatables/css/select.dataTables.min.css')}}"/>
+    <script src="{{url_for('static',filename='/deps/datatables/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{url_for('static',filename='/deps/datatables/js/dataTables.select.min.js')}}"></script>
+
+    <!-- Data  -->
+    <script src="{{url_for('static',filename='/data/js/world_timeline.js')}}"></script>
+    <script src="{{url_for('static',filename='/data/js/total_timeline.js')}}"></script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" media="all" href="{{url_for('static',filename='dark.css')}}" />
+
+    <!-- Main app -->
+    <script src="{{url_for('static',filename='app.js')}}"></script>
+  </head>
+  <body>
+    <header class="header_area">
+
+      <div class="main_menu">
+      <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{{url_for('index')}}"><img src="{{url_for('static',filename='/images/logo-2.png')}}" alt="" ><b style="color: rgb(6, 173, 179); font-size: 20px; ">CDUCX</b></img></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span></span>
+      </button>
+      <div style=" margin-left:40%;">
+      <div  class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="nav navbar-nav ml-auto">
+      <li class="active"><a href="{{url_for('index')}}">Home</a></li>
+      
+      <li><a href="{{url_for('contact')}}">Contact Us</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      <li class="checker_btn">
+      <a href="{{url_for('fchecker')}}"><i class="linearicons-pulse"></i>Covid Detection</a>
+      </li>
+      </ul>
+      </div>
+      </div>
+      </nav>
+      </div>
+      
+      </div>
+      </header>
+      <div style="margin-top:7%;">
+    <div class="flexbox">
+      <div id="chartdiv"></div>
+      <div id="list">
+        <table id="areas" class="compact hover order-column row-border">
+          <thead>
+            <tr>
+              <th>Country/State</th>
+              <th>Confirmed</th>
+              <th>Deaths</th>
+              <th>Recovered</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    </div>
+    <footer class="footer_area">
+      <div class="footer_widgets_area pad_top">
+      <div class="container">
+      <div class="row">
+      <div class="col-lg-3 col-md-6 col-sm-6">
+      <aside class="f_widget contact_widget">
+      <div class="f_title">
+      <h3>Contacts</h3>
+      </div>
+      <div class="ct_wd_text">
+      <div class="media">
+      <div class="d-flex">
+      <i class="linearicons-telephone"></i>
+      </div>
+      <div class="media-body">
+      <h5>emergency call</h5>
+      <a href="tel:+923317357000">
+      <h4>+923317357000</h4>
+      </a>
+      </div>
+      </div>
+      <div class="media">
+      <div class="d-flex">
+      <i class="linearicons-map-marker"></i>
+      </div>
+      <div class="media-body">
+      <p>
+      Satelite Town,BUREWALA
+      </p>
+      </div>
+      </div>
+      <div class="media">
+      <div class="d-flex">
+      <i class="fab fa-skype"></i>
+      </div>
+      <div class="media-body">
+      <a href="skype:mufi123">
+      <h6>Skype ID: <span>CDUCX.org</span></h6>
+      </a>
+      </div>
+      </div>
+      <div class="media">
+      <div class="d-flex">
+      <i class="linearicons-envelope-open"></i>
+      </div>
+      <div class="media-body">
+      <a href="#">
+      <h6>Email: <span><span class="__cf_email__" data-cfemail="1e76775e7b6e777a7b73777d30716c79">hmufassal@gmail.com</span></span></h6>
+      <h6><span><span class="__cf_email__" data-cfemail="1e76775e7b6e777a7b73777d30716c79">jutt.muhammadbilal@gmail.com</span></span></h6>
+      </a>
+      </div>
+      </div>
+      </div>
+      </aside>
+      </div>
+      
+      <div class="col-lg-6 col-md-6 col-sm-6">
+      <aside class="f_widget about_widget">
+      <div class="f_title">
+      <h3>About</h3>
+      
+      </div>
+      <p>
+          The COVID-19 pandemic, also known as the coronavirus pandemic, is an ongoing pandemic of coronavirus disease 2019 (COVID-19) caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2). It was first identified in December 2019 in Wuhan, China. The World Health Organization declared the outbreak a Public Health Emergency of International Concern in January 2020 and a pandemic in March 2020. As of 13 January 2021, more than 91.8 million cases have been confirmed, with more than 1.96 million deaths attributed to COVID-19.
+      
+      Symptoms of COVID-19 are highly variable, ranging from none to severe illness.</p>
+      
+      </aside>
+      </div>
+      </div>
+      </div>
+      </div>
+      <div class="footer_copyright">
+      <div class="container">
+      <img src="{{url_for('static',filename='/images/f-logo.png')}}" alt="">
+      <p>© Copyright
+      <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+                                  document.write(new Date().getFullYear());
+                              </script> CDUCX Organisation Ltd.</p>
+       <ul class="nav">
+      <li><a href="#">Term of Use</a></li>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Impressum</a></li>
+      </ul>
+      <h6>
+      Designed by:<span> Muhammad Bilal & Mufassal Hussain</span>
+      </h6>
+      </div>
+      </div>
+      </footer>
+  </body>
+</html>
