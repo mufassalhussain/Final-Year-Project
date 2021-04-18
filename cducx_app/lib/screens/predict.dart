@@ -16,6 +16,8 @@ class Predictor extends StatelessWidget {
   }
 }
 
+double probability;
+
 class HomePage2 extends StatefulWidget {
   @override
   _HomePage2State createState() => _HomePage2State();
@@ -457,6 +459,16 @@ showAlertDialog5(BuildContext context, List myout) {
       fontWeight: FontWeight.bold,
     ),
   );
+  var alertStyle3 = AlertStyle(
+    animationType: AnimationType.fromTop,
+    isOverlayTapDismiss: false,
+    descStyle: TextStyle(fontWeight: FontWeight.bold),
+    animationDuration: Duration(milliseconds: 350),
+    titleStyle: TextStyle(
+      color: Colors.orange,
+      fontWeight: FontWeight.bold,
+    ),
+  );
   /* //Create button
   Widget okButton = FlatButton(
     child: Text("OK"),
@@ -467,12 +479,14 @@ showAlertDialog5(BuildContext context, List myout) {
   );
  */
   if (myout[0]["label"] == 'Positive') {
+    probability = myout[0]["confidence"];
     Alert(
       style: alertStyle,
       context: context,
       type: AlertType.error,
       title: "COVID19 Positive",
-      desc: "You may require emergency care.Call an Ambulance right now",
+      desc:
+          "You may require emergency care.Call an Ambulance right now.Probability:$probability",
       buttons: [
         DialogButton(
           child: Text(
@@ -489,13 +503,37 @@ showAlertDialog5(BuildContext context, List myout) {
       ],
     ).show();
   } else if (myout[0]["label"] == 'Normal') {
+    probability = myout[0]["confidence"];
     //mytext = 'COVID19 status is '+myout[0]["label"].toString()+' Congratulation you are safe';
     Alert(
       context: context,
       style: alertStyle2,
       type: AlertType.success,
       title: "COVID19 Normal",
-      desc: "Congratulation you are safe",
+      desc: "Congratulation you are safe.Probability:$probability",
+      buttons: [
+        DialogButton(
+          child: Text(
+            "Ok",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          gradient: LinearGradient(colors: [
+            Color.fromRGBO(116, 116, 191, 1.0),
+            Color.fromRGBO(52, 138, 199, 1.0)
+          ]),
+          onPressed: () => Navigator.pop(context),
+          width: 120,
+        )
+      ],
+    ).show();
+  } else if (myout[0]["label"] == 'Other_Disease') {
+    probability = myout[0]["confidence"];
+    Alert(
+      context: context,
+      style: alertStyle3,
+      type: AlertType.warning,
+      title: "Other Disease",
+      desc: "You may require emergency care. Probability:$probability",
       buttons: [
         DialogButton(
           child: Text(
