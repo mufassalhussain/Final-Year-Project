@@ -1,0 +1,1 @@
+& "C:/Users/IT WORLD/anaconda3/envs/tensorflow/python.exe" "c:\Users\IT WORLD\.vscode\extensions\ms-python.python-2020.12.424452561\pythonFiles\pyvsc-run-isolated.py" pip install -U flask

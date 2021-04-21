@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="{{url_for('static',filename='images/log.ico')}}" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="icon" src="{{url_for('static',filename='images/favicon.png')}}" type="image/png')}}" />
+  <title>Contact US-CDUCX</title>
+  
+  <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='vendors/fontawesome/css/all.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='vendors/linearicons/css/linearicons.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='vendors/slick/slick.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='vendors/slick/slick-theme.css')}}"  />
+  <link rel="stylesheet" href="{{url_for('static',filename='vendors/mCustomScrollbar/jquery.mCustomScrollbar.min.css')}}" />
+  <link rel="stylesheet" href="{{url_for('static',filename='vendors/animate-css/animate.css')}}"  />
+  
+  <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}"  />
+  <link rel="stylesheet" href="{{url_for('static',filename='css/responsive.css')}}" />
+  </head>
+<body data-scroll-animation="true">
+<div class="body_wrapper">
+
+<div class="preloader">
+<div class="three-bounce">
+<div class="one"></div>
+<div class="two"></div>
+<div class="three"></div>
+</div>
+</div>
+
+
+
+
+<div class="body_capture"></div>
+<section class="sidebar_widget scroll_body">
+<div class="info_sidebar_inner">
+<div class="close_btn">
+<img src="assets/images/icon/close.png" alt="">
+</div>
+
+<div class="info_title">
+<h2>Get in touch</h2>
+<p>If you have any question before we start, please fill below the contact form.</p>
+</div>
+<form action="#" class="appoinment_form js-form">
+<div class="row">
+<div class="col-lg-12">
+<div class="form-group">
+<input class="form-control" type="text" id="a_name" name="a_name" placeholder="" />
+<label><i class="linearicons-user"></i>Your Name</label>
+</div>
+</div>
+<div class="col-lg-12">
+<div class="form-group">
+<input class="form-control" type="text" id="a_email" name="a_email" placeholder="" />
+<label><i class="linearicons-envelope-open"></i>Your Email
+Address</label>
+</div>
+</div>
+<div class="col-lg-12">
+<div class="form-group">
+<input class="form-control" type="text" id="a_number" name="a_number" placeholder="" />
+<label><i class="linearicons-telephone"></i>Your Phone
+Number</label>
+</div>
+</div>
+<div class="col-lg-12">
+<div class="form-group">
+<textarea name="a_message" id="a_message" cols="30" rows="10" class="form-control">
+                                </textarea>
+<label><i class="linearicons-document"></i>Your Message</label>
+</div>
+</div>
+<div class="col-lg-12">
+<div class="form-group checkbox_field">
+<div class="checkbox">
+<input type="checkbox" value="None" id="a_policy" name="check" />
+<label class="l_text" for="a_policy">I accept the <span>Privacy
+Policy</span></label>
+</div>
+<button type="submit" class="green_btn" name="appoinment" id="appoinment" value="appoinment" data-value="appoinment">
+Submit
+</button>
+</div>
+</div>
+</div>
+<div class="success-message">
+<i class="fa fa-check text-primary"></i> Thank you!. Your message
+is successfully sent...
+</div>
+<div class="error-message">We're sorry, but something went wrong</div>
+</form>
+<div class="info_footer">
+<p>© Copyright
+<script>
+                            document.write(new Date().getFullYear());
+                        </script> Epidemic Organisation Ltd.
+</p>
+<h6>
+Designed with <i class="linearicons-heart"></i>
+by <span>creakits</span>
+</h6>
+</div>
+</div>
+</section>
+
+<header class="header_area">
+
+    <div class="main_menu">
+    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{url_for('index')}}"><img src="{{url_for('static',filename='/images/logo-2.png')}}" alt="" ><b style="color: rgb(6, 173, 179); font-size: 20px; ">CDUCX</b></img></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span></span>
+    </button>
+    <div style=" margin-left:40%;">
+    <div  class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="nav navbar-nav ml-auto">
+    <li ><a href="{{url_for('index')}}">Home</a></li>
+    
+    <li class="active"><a href="{{url_for('contact')}}">Contact Us</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+    <li class="checker_btn">
+    <a href="{{url_for('fchecker')}}"><i class="linearicons-pulse"></i>Covid Detection</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </nav>
+    </div>
+    
+    </div>
+    </header>
+
+
+<section class="breadcrumb_area">
+<div class="container">
+<div class="breadcrumb_text">
+<h6 class="wow fadeInUp">Contact us</h6>
+<h3 class="wow fadeInUp" data-wow-delay="0.2s">Get in Touch</h3>
+<ul class="nav justify-content-center wow fadeInUp" data-wow-delay="0.3s">
+<li><a href="{{url_for('index')}}">Home</a></li>
+<li><a href="{{url_for('contact')}}">Contact</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+
+<section class="contact_area">
+<div class="container">
+<div class="row contact_details">
+<div class="col-lg-3 col-6">
+<div class="contact_details_item wow fadeInLeft" data-wow-delay="0.2s">
+<i class="linearicons-map-marker"></i>
+<h4>Address</h4>
+<p>Satelite town, BUREWALA</p>
+</div>
+</div>
+<div class="col-lg-3 col-6">
+<div class="contact_details_item  wow fadeInLeft" data-wow-delay="0.3s">
+<i class="linearicons-home4"></i>
+<h4>Our Office</h4>
+<p>Comsats University Islamabad,Vehari</p>
+</div>
+</div>
+<div class="col-lg-3 col-6">
+<div class="contact_details_item  wow fadeInLeft" data-wow-delay="0.4s">
+<i class="linearicons-telephone"></i>
+<h4>Phone</h4>
+<a href="tel:+923317357000">
+<h6>Office: +923317357000</h6>
+</a>
+<a href="tel:+923064672596">
+<h6>Service: +923064672596</h6>
+</a>
+</div>
+</div>
+<div class="col-lg-3 col-6">
+<div class="contact_details_item  wow fadeInLeft" data-wow-delay="0.5s">
+<i class="linearicons-envelope-open"></i>
+<h4>Email</h4>
+<a href="#">
+<h6><span class="__cf_email__" data-cfemail="12616762627d60665277627b76777f7b713c7d6075">hmufassal@gmail.com</span></h6>
+</a>
+<a href="#">
+<h6><span class="__cf_email__" data-cfemail="096160496c79606d6c64606a27667b6e">jutt.muhammadbbilal@gmail.com</span></h6>
+</a>
+</div>
+</div>
+</div>
+<div class="contact_form_inner">
+<form class="row contact_us_form appoinment_form js-form">
+<div class="col-lg-4">
+<div class="form-group">
+<input class="form-control" type="text" id="name" name="name" placeholder="" required />
+<label class="top_text"><i class="linearicons-user"></i>Your Name</label>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="form-group">
+<input class="form-control" type="text" id="email" name="email" placeholder="" required />
+<label class="top_text"><i class="linearicons-envelope-open"></i>Your Email
+Address</label>
+</div>
+</div>
+<div class="col-lg-4">
+<div class="form-group">
+<input class="form-control" type="text" id="number" name="number" placeholder="" required />
+<label class="top_text"><i class="linearicons-telephone"></i>Your Phone
+Number</label>
+</div>
+ </div>
+<div class="col-lg-12">
+<div class="form-group">
+<textarea name="message" id="message" cols="30" rows="10" class="form-control" required></textarea>
+<label class="top_text"><i class="linearicons-pencil4"></i>Your Message</label>
+</div>
+</div>
+<div class="col-lg-12">
+<div class="form-group checkbox_field">
+<div class="checkbox">
+<input type="checkbox" value="None" id="policy" name="check" />
+<label class="l_text" for="policy">I accept the <span>Privacy Policy</span> and
+the
+<span>Term of Use.</span></label>
+</div>
+<button type="submit" value="submit" class="green_btn">
+Send Message
+</button>
+</div>
+</div>
+<div class="success-message">
+<i class="fa fa-check text-primary"></i> Thank you!. Your message
+is successfully sent...
+</div>
+<div class="error-message">We're sorry, but something went wrong</div>
+</form>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+
+<footer class="footer_area">
+    <div class="footer_widgets_area pad_top">
+    <div class="container">
+    <div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+    <aside class="f_widget contact_widget">
+    <div class="f_title">
+    <h3>Contacts</h3>
+    </div>
+    <div class="ct_wd_text">
+    <div class="media">
+    <div class="d-flex">
+    <i class="linearicons-telephone"></i>
+    </div>
+    <div class="media-body">
+    <h5>emergency call</h5>
+    <a href="tel:+923317357000">
+    <h4>+923317357000</h4>
+    </a>
+    </div>
+    </div>
+    <div class="media">
+    <div class="d-flex">
+    <i class="linearicons-map-marker"></i>
+    </div>
+    <div class="media-body">
+    <p>
+    Satelite Town,BUREWALA
+    </p>
+    </div>
+    </div>
+    <div class="media">
+    <div class="d-flex">
+    <i class="fab fa-skype"></i>
+    </div>
+    <div class="media-body">
+    <a href="skype:mufi123">
+    <h6>Skype ID: <span>CDUCX.org</span></h6>
+    </a>
+    </div>
+    </div>
+    <div class="media">
+    <div class="d-flex">
+    <i class="linearicons-envelope-open"></i>
+    </div>
+    <div class="media-body">
+    <a href="#">
+    <h6>Email: <span><span class="__cf_email__" data-cfemail="1e76775e7b6e777a7b73777d30716c79">hmufassal@gmail.com</span></span></h6>
+    <h6><span><span class="__cf_email__" data-cfemail="1e76775e7b6e777a7b73777d30716c79">jutt.muhammadbilal@gmail.com</span></span></h6>
+    </a>
+    </div>
+    </div>
+    </div>
+    </aside>
+    </div>
+    
+    <div class="col-lg-6 col-md-6 col-sm-6">
+    <aside class="f_widget about_widget">
+    <div class="f_title">
+    <h3>About</h3>
+    
+    </div>
+    <p>
+        The COVID-19 pandemic, also known as the coronavirus pandemic, is an ongoing pandemic of coronavirus disease 2019 (COVID-19) caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2). It was first identified in December 2019 in Wuhan, China. The World Health Organization declared the outbreak a Public Health Emergency of International Concern in January 2020 and a pandemic in March 2020. As of 13 January 2021, more than 91.8 million cases have been confirmed, with more than 1.96 million deaths attributed to COVID-19.
+    
+    Symptoms of COVID-19 are highly variable, ranging from none to severe illness.</p>
+    
+    </aside>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="footer_copyright">
+    <div class="container">
+    <img src="{{url_for('static',filename='/images/f-logo.png')}}" alt="">
+    <p>© Copyright
+    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+                                document.write(new Date().getFullYear());
+                            </script> CDUCX Organisation Ltd.</p>
+     <ul class="nav">
+    <li><a href="#">Term of Use</a></li>
+    <li><a href="#">Privacy Policy</a></li>
+    <li><a href="#">Impressum</a></li>
+    </ul>
+    <h6>
+    Designed by:<span> Muhammad Bilal & Mufassal Hussain</span>
+    </h6>
+    </div>
+    </div>
+    </footer>
+
+</div>
+
+
+
+
+<script src="{{url_for('static',filename='js/jquery-3.4.1.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/popper.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static',filename='corona-live/dashboard.js')}}"></script>
+<script src="{{url_for('static',filename='vendors/isotop/imagesloaded.pkgd.min.js')}}"></script>
+<script src="{{url_for('static',filename='vendors/isotop/isotope.pkgd.min.js')}}"></script>
+<script src="{{url_for('static',filename='vendors/slick/slick.min.js')}}"></script>
+<script src="{{url_for('static',filename='vendors/scroll-animation/jquery.parallax-scroll.js')}}"></script>
+<script src="{{url_for('static',filename='vendors/scroll-animation/parallax.js')}}"></script>
+<script src="{{url_for('static',filename='vendors/mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+<script src="{{url_for('static',filename='vendors/animate-css/wow.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/jquery.validate.min.js')}}"></script>
+<script src="{{url_for('static',filename='js/theme.js')}}"></script>
+</body>
+
+<!-- Mirrored from paul-themes.com/html/covid-19/contact.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 24 Dec 2020 07:38:36 GMT -->
+</html>
