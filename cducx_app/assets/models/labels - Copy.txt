@@ -1,0 +1,3 @@
+Covid19 Negative
+Covid19 Positive
+Other Disease
