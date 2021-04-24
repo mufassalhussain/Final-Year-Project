@@ -26,38 +26,39 @@ class HomePage2 extends StatefulWidget {
 }
 
 class _HomePage2State extends State<HomePage2> {
+  GlobalKey<ProgressHudState> _hudKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavDrawer(),
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'Predict',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 25.0,
-            fontFamily: 'Poppins',
+        drawer: NavDrawer(),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(
+            'Predict',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 25.0,
+              fontFamily: 'Poppins',
+            ),
           ),
-        ),
 
-        // leading: IconButton(
-        //  icon: Icon(Icons.menu),
-        //onPressed: () {
-        // NavDrawer();
-        //},
-        // ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [Colors.purple, Colors.blue],
+          // leading: IconButton(
+          //  icon: Icon(Icons.menu),
+          //onPressed: () {
+          // NavDrawer();
+          //},
+          // ),
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [Colors.purple, Colors.blue],
+              ),
             ),
           ),
         ),
-      ),
-      /*
+        /*
         BottomNavigationBar(
           onTap: onTapped,
           backgroundColor: Colors.purple,
@@ -87,73 +88,79 @@ class _HomePage2State extends State<HomePage2> {
         ),
         
         */
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.purple,
-        child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(
-                child: SizedBox(
-                  height: 70,
-                  child: Material(
-                    type: MaterialType.transparency,
-                    child: InkWell(
-                      onTap: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomePage())),
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Icon(
-                            FontAwesomeIcons.home,
-                            color: Colors.black,
-                          ),
-                          Text(
-                            'Home',
-                            style: kBottomBarTextStyle,
-                          ),
-                        ],
+        bottomNavigationBar: BottomAppBar(
+          color: Colors.purple,
+          child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Expanded(
+                  child: SizedBox(
+                    height: 70,
+                    child: Material(
+                      type: MaterialType.transparency,
+                      child: InkWell(
+                        onTap: () => {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage())),
+                        },
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(
+                              FontAwesomeIcons.home,
+                              color: Colors.black,
+                            ),
+                            Text(
+                              'Home',
+                              style: kBottomBarTextStyle,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: SizedBox(
-                  height: 70,
-                  child: Material(
-                    type: MaterialType.transparency,
-                    child: InkWell(
-                      onTap: () => {
-                        HomePage2(),
-                      },
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Icon(
-                            FontAwesomeIcons.superpowers,
-                            color: Colors.black,
-                          ),
-                          Text(
-                            'Predict',
-                            style: kBottomBarTextStyle,
-                          ),
-                        ],
+                Expanded(
+                  child: SizedBox(
+                    height: 70,
+                    child: Material(
+                      type: MaterialType.transparency,
+                      child: InkWell(
+                        onTap: () => {
+                          HomePage2(),
+                        },
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Icon(
+                              FontAwesomeIcons.superpowers,
+                              color: Colors.black,
+                            ),
+                            Text(
+                              'Predict',
+                              style: kBottomBarTextStyle,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ]),
-      ),
-      body: Predictor(),
-    );
+              ]),
+        ),
+        body: ProgressHud(
+            key: _hudKey,
+            maximumDismissDuration: Duration(seconds: 2),
+            child: Center(
+              child: Builder(builder: (context) {
+                return Predictor();
+              }),
+            )));
   }
 }
 
@@ -441,28 +448,30 @@ class _MyImagePickerState extends State<MyImagePicker> {
 }
 
 _showProgressHud(BuildContext context, List result) {
-  var hud = ProgressHud.of(context);
-  hud.show(ProgressHudType.progress, "loading");
+  if (result[0]["label"] == 'Normal' ||
+      result[0]["label"] == 'Positive' ||
+      result[0]["label"] == 'Other_Disease') {
+    var hud = ProgressHud.of(context);
+    hud.show(ProgressHudType.progress, "loading");
 
-  double current = 0;
-  Timer.periodic(Duration(milliseconds: 1000.0 ~/ 60), (timer) {
-    current += 1;
-    var progress = current / 100;
-    hud.updateProgress(progress, "Loading $current%");
-    if (result[0]["label"] == 'Positive' ||
-        result[0]["label"] == 'Normal' ||
-        result[0]["label"] == 'Other_Disease') {
+    double current = 0;
+    Timer.periodic(Duration(milliseconds: 1000.0 ~/ 60), (timer) {
+      current += 1;
+      var progress = current / 100;
+      hud.updateProgress(progress, "loading $current%");
       if (progress == 1) {
-        // finished
-        hud.showAndDismiss(ProgressHudType.success, "Load Success");
+        hud.showAndDismiss(ProgressHudType.success, "Load success");
         timer.cancel();
         showAlertDialog5(context, result);
       }
-    } else {
-      ProgressHud.showAndDismiss(
-          ProgressHudType.error, "Load Fail Chose Image First");
-    }
-  });
+    });
+  }
+}
+
+//
+_showErrorHud(BuildContext context) {
+  ProgressHud.of(context)
+      .showAndDismiss(ProgressHudType.error, "Load Fail Select Image First");
 }
 
 showAlertDialog5(BuildContext context, List myout) {
