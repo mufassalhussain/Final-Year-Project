@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/home_page.dart';
+import 'screens/splash.dart';
 
 void main() {
   runApp(Covid());
@@ -11,7 +11,7 @@ class Covid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      home: splashscreen(),
       theme: ThemeData.light().copyWith(
         primaryColor: Color(0xFFF7F7F7),
         scaffoldBackgroundColor: Color(0xFFF7F7F7),

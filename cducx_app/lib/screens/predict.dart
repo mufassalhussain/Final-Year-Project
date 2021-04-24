@@ -6,6 +6,8 @@ import 'package:tflite/tflite.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:covid/screens/home_page.dart';
+import 'package:bmprogresshud/bmprogresshud.dart';
+import 'dart:async';
 
 class Predictor extends StatelessWidget {
   @override
@@ -331,7 +333,7 @@ class _MyImagePickerState extends State<MyImagePicker> {
                   borderRadius: BorderRadius.circular(10.0),
                 ),
                 child: RaisedButton(
-                  onPressed: () => showAlertDialog5(context, result),
+                  onPressed: () => _showProgressHud(context, result),
                   child: Column(
                     children: <Widget>[
                       Icon(
@@ -436,6 +438,31 @@ class _MyImagePickerState extends State<MyImagePicker> {
     Tflite.close();
     super.dispose();
   }
+}
+
+_showProgressHud(BuildContext context, List result) {
+  var hud = ProgressHud.of(context);
+  hud.show(ProgressHudType.progress, "loading");
+
+  double current = 0;
+  Timer.periodic(Duration(milliseconds: 1000.0 ~/ 60), (timer) {
+    current += 1;
+    var progress = current / 100;
+    hud.updateProgress(progress, "Loading $current%");
+    if (result[0]["label"] == 'Positive' ||
+        result[0]["label"] == 'Normal' ||
+        result[0]["label"] == 'Other_Disease') {
+      if (progress == 1) {
+        // finished
+        hud.showAndDismiss(ProgressHudType.success, "Load Success");
+        timer.cancel();
+        showAlertDialog5(context, result);
+      }
+    } else {
+      ProgressHud.showAndDismiss(
+          ProgressHudType.error, "Load Fail Chose Image First");
+    }
+  });
 }
 
 showAlertDialog5(BuildContext context, List myout) {

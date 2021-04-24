@@ -25,6 +25,7 @@ dependencies:
   alpha2_countries: ^1.0.5
   rflutter_alert: ^2.0.2
   firebase_messaging: ^7.0.3
+  bmprogresshud: ^0.0.10
 
 dev_dependencies:
   flutter_test:
