@@ -6,7 +6,6 @@ import base64
 from PIL import Image
 import io
 import re
-import random
 
 img_size=100
 
@@ -70,10 +69,7 @@ def predict():
 	accuracy=float(np.max(prediction,axis=1)[0])
 
 	label=label_dict[result]
-	if(accuracy>=1.0):
-		accuracy=random.uniform(0.93, 0.9950)
 
-	
 	print(prediction,result,accuracy)
 
 	response = {'prediction': {'result': label,'accuracy': accuracy}}
