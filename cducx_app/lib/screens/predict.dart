@@ -515,14 +515,14 @@ showAlertDialog5(BuildContext context, List myout) {
   );
  */
   if (myout[0]["label"] == 'Positive') {
-    probability = myout[0]["confidence"];
+    //probability = myout[0]["confidence"];
     Alert(
       style: alertStyle,
       context: context,
       type: AlertType.error,
       title: "COVID19 Positive",
       desc:
-          "You may require emergency care.Call an Ambulance right now.Probability:$probability",
+          "You may require emergency care.Call an Ambulance right now.",
       buttons: [
         DialogButton(
           child: Text(
@@ -539,14 +539,14 @@ showAlertDialog5(BuildContext context, List myout) {
       ],
     ).show();
   } else if (myout[0]["label"] == 'Normal') {
-    probability = myout[0]["confidence"];
+    //probability = myout[0]["confidence"];
     //mytext = 'COVID19 status is '+myout[0]["label"].toString()+' Congratulation you are safe';
     Alert(
       context: context,
       style: alertStyle2,
       type: AlertType.success,
       title: "COVID19 Normal",
-      desc: "Congratulation you are safe.Probability:$probability",
+      desc: "Congratulation you are safe.",
       buttons: [
         DialogButton(
           child: Text(
@@ -563,13 +563,13 @@ showAlertDialog5(BuildContext context, List myout) {
       ],
     ).show();
   } else if (myout[0]["label"] == 'Other_Disease') {
-    probability = myout[0]["confidence"];
+    //probability = myout[0]["confidence"];
     Alert(
       context: context,
       style: alertStyle3,
       type: AlertType.warning,
       title: "Other Disease",
-      desc: "You may require emergency care. Probability:$probability",
+      desc: "You may require emergency care.",
       buttons: [
         DialogButton(
           child: Text(
